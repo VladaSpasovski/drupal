@@ -1,0 +1,8 @@
+#navbar-administration .navbar-filter {
+  width: 100%;
+  padding: 1em;
+  display: none;
+}
+#navbar-administration .navbar-active.navbar-tray-vertical .navbar-filter {
+  display: block;
+}

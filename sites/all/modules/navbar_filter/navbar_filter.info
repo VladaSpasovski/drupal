@@ -1,0 +1,13 @@
+name = Navbar Filter
+core = 7.x
+package = Administration
+description = Provide a text filtering on Navbar menu
+
+dependencies[] = navbar
+
+; Information added by Drupal.org packaging script on 2016-08-04
+version = "7.x-1.0"
+core = "7.x"
+project = "navbar_filter"
+datestamp = "1470343700"
+

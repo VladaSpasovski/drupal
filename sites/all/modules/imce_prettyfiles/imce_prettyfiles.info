@@ -1,0 +1,15 @@
+core = 7.x
+name = "IMCE pretty files"
+description = "Shortens file URLs when embedded by IMCE"
+package = "Media"
+
+scripts[] = "imce_prettyfiles.js"
+
+project status url = http://features.sparksinteractive.co.nz/fserver
+
+; Information added by Drupal.org packaging script on 2016-03-23
+version = "7.x-1.0"
+core = "7.x"
+project = "imce_prettyfiles"
+datestamp = "1458701244"
+

@@ -1,0 +1,39 @@
+diff --git a/.htaccess b/.htaccess
+index 7ccb6a2..aaa1aa2 100644
+--- a/.htaccess
++++ b/.htaccess
+@@ -52,6 +52,34 @@ DirectoryIndex index.php index.html index.htm
+   </FilesMatch>
+ </IfModule>
+ 
++# Add this code to your vhost or similar. Before the Drupal rewrites fire.
++# This provides the Aegir short-files-url trick, modifed to also be compatible
++# with the client-side support for it that aegir_prettyfiles does by way of
++# HOOK_file_url_alter() 
++# May conflict with any other magic that a module may overlay on the files dir.
++
++<IfModule mod_rewrite.c>
++  RewriteEngine on
++  
++  # Allow files to be accessed without /sites/fqdn/
++  # Stolen from Aegir for http://drupal.org/node/269250#comment-3879464
++
++  # If the request is under /files/
++  # if it's an image styles deriv
++  # and it may not have been built yet
++  # redirect to the long path as a 301
++  # so normal image deriv can build it. First time only.
++  RewriteCond %{REQUEST_URI} ^/files/styles/(.*)$
++  RewriteCond %{DOCUMENT_ROOT}/sites/%{SERVER_NAME}/files/styles/%1  !-f
++  RewriteRule ^files/styles/(.*)$ /sites/%{SERVER_NAME}/files/styles/$1 [L,R=301]
++
++  # If someone asked for files/* give them our site files. Transparently.
++  RewriteRule ^files/(.*)$ /sites/%{SERVER_NAME}/files/$1 [L]
++  # Using SERVER_NAME not HTTP_HOST as HTTP_HOST contains the port which
++  # is not Acquia compatible.
++
++</ifModule>
++
+ # Various rewrite rules.
+ <IfModule mod_rewrite.c>
+   RewriteEngine on

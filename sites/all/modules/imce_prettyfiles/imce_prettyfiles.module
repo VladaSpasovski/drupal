@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Changes IMCE behaviour to display image links the way Aegir expects it.
+ *
+ * It uses '/files/file.name' syntax instead of the non-portable
+ * '/sites/sitename/files/file.name' path.
+ *
+ * Aegir puts the following line into the vhost:
+ *
+ *   # allow files to be accessed without /sites/fqdn/
+ *   RewriteRule ^files/(.*)$ /sites/%{SERVER_NAME}/files/$1 [L]
+ *   # Using SERVER_NAME not HTTP_HOST as HTTP_HOST contains the port
+ *   # which is not Acquia compatible.
+ *
+ * and this module assumes you've already got this working too.
+ *
+ * From a code snippet
+ * http://drupal.org/node/269250#comment-3879464
+ *
+ * This placeholder only exists to allow the system to include the js.
+ */

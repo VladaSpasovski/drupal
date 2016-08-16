@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Navbar filter main module file.
+ */
+
+/**
+ * Implements hook_navbar().
+ */
+function navbar_filter_navbar_alter(&$items) {
+  $items['administration']['tray']['navbar_administration']['links_filter'] = array(
+    '#type' => 'textfield',
+    '#weight' => -100,
+    '#attributes' => array(
+      'placeholder' => t('Type to filter menu...'),
+      'class' => array('navbar-filter'),
+    ),
+    // Custom CSS, JS or a library can be associated with the navbar item.
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'navbar_filter') . '/js/menu.filter.js',
+      ),
+      'css' => array(
+        drupal_get_path('module', 'navbar_filter') . '/css/menu.filter.css',
+      ),
+    ),
+  );
+}
